@@ -41,7 +41,9 @@ regulatingEvents:SetScript("OnEvent", function(self, event, ...)
 end)
 
 local function runTimer()
-    if not continueRunning or elapsed>68 then
+    --We use 68 to manually bound recursion where necessary, because gold finishes are typically much less.
+    local highTime = 68
+    if not continueRunning or elapsed>highTime then
         print("stopped at " ..elapsed)
         elapsed = 0
         continueRunning = false
