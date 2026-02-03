@@ -10,4 +10,6 @@ local function professionTextGen()
 	print("profession detected")
 end
 
+
+
 private.professionTextGen = professionTextGen

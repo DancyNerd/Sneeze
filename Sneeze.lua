@@ -21,6 +21,7 @@ local addonName, private = ...
 --CONTENT_TRACKING_UPDATE
 --ITEM_TEXT_READY, BEGIN, CLOSED show up when interacting with achievement tracked criterion
 --Fix scaffolding for validateCatId - make tables for different achievement types/expansions.
+--SCENARIO_POI_UPDATE might be helpful for finding appropriate delve stories.
 
 --Create table with event name as the key and entire function as the value.
 
@@ -42,14 +43,6 @@ local function getCriteria(trackID)
 		end
 	end
 	--catchCriteria needs to go to a place where its values are evaluated for distance to player.
-end
-
-local function getNearestCity()
-	--Determine nearest major city to player after narrowing for zone.
-end
-
-local function getMajorCities()
-	--Determine major cities for that zone.
 end
 
 --On event ZONE_CHANGED_NEW_AREA, we update script-wide variables for zone and subzone.

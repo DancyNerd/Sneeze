@@ -19,12 +19,20 @@ local TIME_INTERVAL = 0.25
 
 
 local eventHandlers = {
-    ["PLAYER_IS_GLIDING_CHANGED"] = function(self, event, ...)
-        local playerIsGliding = ...
-        if not playerIsGliding then
+    ["CHAT_MSG_MONSTER_SAY"] = function(self, event, ...)
+        local monsterSays, monsterType = ...
+        local startCue = "GO!"
+        if monsterSays ~= startCue and monsterType == "Bronze Timekeeper" then
+            continueRunning = false
+        elseif monsterSays ~= startCue and monsterType == "Grimy Timekeeper" then
+            continueRunning = false
+        elseif monsterSays ~= startCue and monsterType == "Bronze Timekeeper Assistant" then
             continueRunning = false
         end
-    end
+    end,
+    ["LOADING_SCREEN_ENABLED"] = function(self, event, ...)
+        continueRunning = false
+    end,
 }
 
 for eventName in pairs(eventHandlers) do
@@ -53,7 +61,8 @@ local function runTimer()
     end
 end
 
-
+--This will need to catch the name of the monster from the trigger event in Sneeze.lua.
+--Add if/elseif logic to change how timer operates.
 function private.startTimer()
     --print("we made it")
     continueRunning = true
