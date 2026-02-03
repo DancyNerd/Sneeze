@@ -1,0 +1,13 @@
+## Interface: 120000
+## Title: Sneeze
+## Notes: Aid in locating tracked achievements.
+## Author: DancyNerd
+## Version: 0.0.1
+## Dependencies: Blizzard_AchievementUI
+
+Sneeze.lua
+SneezeProfessionHandler.lua
+SneezeWEHandler.lua
+SneezeQPHandler.lua
+SneezeSkyriding.lua
+SneezeInstanceHandler.lua
