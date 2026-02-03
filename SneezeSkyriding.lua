@@ -4,53 +4,42 @@ Specified eveents from Sneeze.lua will be used to trigger functions here.
 ]]--
 
 local addonName, private = ...
-local timerData = nil --This is populated later.
 
-local function cbTimer(payload)
-    if not payload then return end
+--Pulling out timer variable because recursion woo.
+local elapsed = 0
 
-    timerData = payload
-    payload:Invoke()
-    print(payload)
+--This frame is for events that regulate processes initiated by controlling script.
+local regulatingEvents = CreateFrame("FRAME")
+
+
+local TIME_INTERVAL = 50
+
+
+local function runTimer(continueRunning)
+    if not continueRunning then
+        print("stopped")
+        elapsed = 0
+    else
+        elapsed = elapsed + (TIME_INTERVAL/100)
+        C_Timer.After(TIME_INTERVAL, function() print(elapsed) end)
+        runTimer(true)
+    end
 end
 
 function private.startTimer()
     print("we made it")
-    C_Timer.NewTimer(0.5, cbTimer)
+    runTimer(true)
 end
 
---[[local function startTimer()
-    local raceTimer = C_Timer.NewTimer( 0.5, function() print(GetTime()) end)
-    print(raceTimer)
-    local raceFrame = CreateFrame("Frame")
-    raceFrame:RegisterEvent("PLAYER_IS_GLIDING_CHANGED")
-    raceFrame:SetScript("OnEvent", function(self, event, ...)
-        local playerGliding = ...
-        if not playerGliding then
-            raceTimer:Cancel()
-            print("Timer Ended")
+local eventTable = {
+    ["PLAYER_IS_GLIDING_CHANGED"] = function(self, event, ...)
+        local playerIsGliding = ...
+        if not playerIsGliding then
+            runTimer(false)
         end
     end
-    
-    --local boxCreated = createTimerBox()
-    --if boxCreated then
-        -- Logic to start and update the timer display
-    --end
-end]]--
+}
 
---private.startTimer = startTimer
-
-local raceFrame = CreateFrame("Frame")
-raceFrame:RegisterEvent("PLAYER_IS_GLIDING_CHANGED")
-raceFrame:SetScript("OnEvent", function(self, event, ...)
-    local playerGliding = ...
-    if not playerGliding then
-        if timerData then
-            timerData:Cancel()
-            timerData = nil
-            print("Timer Ended")
-        end
-    end
-end)
-
-
+for eventName in pairs(eventTable) do
+    regulatingEvents:RegisterEvent(eventName)
+end

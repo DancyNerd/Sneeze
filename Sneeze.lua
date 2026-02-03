@@ -71,6 +71,7 @@ local function sneezeSkyriding(skyridingType)
 	--This should track time and display a timer.
 end
 
+--Table of event triggers.
 local eventHandlers = {
 	["CHAT_MSG_MONSTER_SAY"] = function (self, event,...)
 		local msg = ...
