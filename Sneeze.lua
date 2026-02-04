@@ -86,17 +86,18 @@ local eventHandlers = {
 	end,
 }
 
+--Declare that ZONE_CHANGED and ZONE_CHANGED_NEW_AREA can be used interchangeably.
 eventHandlers.ZONE_CHANGED=eventHandlers.ZONE_CHANGED_NEW_AREA
 
 
-local function validateCatId(catID)
+local function validateCatId(professionCat)
 	--Categories of achievements can be nested. We need to ensure we are only tracking certain categories.
-	if catID == 15071 then
-		private.professionTextGen()
-	elseif catID < 15500 and catID > 15488 then
-		private.professionTextGen()
-	elseif catID < 172 and catID > 168 then
-		private.professionTextGen()
+	if professionCat == 15071 then
+		private.catchProfCategoryMapID(professionCat)
+	elseif professionCat < 15500 and professionCat > 15488 then
+		private.catchProfCategoryMapID(professionCat)
+	elseif professionCat < 172 and professionCat > 168 then
+		private.catchProfCategoryMapID(professionCat)
 	else
 		--function call to evaluate if same zone.
 	end
