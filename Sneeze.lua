@@ -90,16 +90,10 @@ local eventHandlers = {
 eventHandlers.ZONE_CHANGED=eventHandlers.ZONE_CHANGED_NEW_AREA
 
 
-local function validateCatId(professionCat)
+local function validateCatId(achieveCat)
 	--Categories of achievements can be nested. We need to ensure we are only tracking certain categories.
-	if professionCat == 15071 then
-		private.catchProfCategoryMapID(professionCat)
-	elseif professionCat < 15500 and professionCat > 15488 then
-		private.catchProfCategoryMapID(professionCat)
-	elseif professionCat < 172 and professionCat > 168 then
-		private.catchProfCategoryMapID(professionCat)
-	else
-		--function call to evaluate if same zone.
+	if private.professionCatTable[achieveCat] then
+		private.catchProfCategory(achieveCat)
 	end
 end
 

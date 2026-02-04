@@ -5,7 +5,7 @@ Specified eveents from Sneeze.lua will be used to trigger functions here.
 
 local addonName, private = ...
 
-local professionCatTable = {
+private.professionCatTable = {
 	[169] = "General Professions",
 	[15489] = "Alchemy",
 	[15490] = "Blacksmithing",
@@ -29,7 +29,8 @@ local professionCatTable = {
 
 
 
-function private.catchProfCategoryMapID(professionCat)
+function private.catchProfCategory(achieveCat)
+	print("Caught profession category: "..achieveCat)
 	--professionCat will be keyed to a profession table.
 	--mapID handling undetermined as of yet, but may rely on C_GossipInfo.GetPoiInfo which accepts uiMapID, gossipPoiID and appears to return table (name, textureIndex, position, inBattleMap)
 end
