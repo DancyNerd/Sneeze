@@ -5,7 +5,23 @@ Specified eveents from Sneeze.lua will be used to trigger functions here.
 
 local addonName, private = ...
 
-
+local professionCatTable = {
+	[169] = "General Professions",
+	[15489] = "Alchemy",
+	[15490] = "Blacksmithing",
+	[15491] = "Enchanting",
+	[15492] = "Engineering",
+	[15493] = "Inscription",
+	[15494] = "Jewelcrafting",
+	[15495] = "Leatherworking",
+	[15496] = "Tailoring",
+	[15499] = "Herbalism",
+	[15497] = "Mining",
+	[15498] = "Skinning",
+	[170] = "Cooking",
+	[171] = "Fishing",
+	[15071] = "Archaeology"
+}
 
 
 
