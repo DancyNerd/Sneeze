@@ -69,6 +69,7 @@ local function startTimer()
     runTimer()
 end
 
+--Handling for which skyriding type we're being called for.
 local function sneezeSkyriding(skyridingType)
 	if skyridingType == "dragonrace" then
 		startTimer()
