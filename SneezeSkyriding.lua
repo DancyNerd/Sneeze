@@ -63,9 +63,15 @@ end
 
 --This will need to catch the name of the monster from the trigger event in Sneeze.lua.
 --Add if/elseif logic to change how timer operates.
-function private.startTimer()
+local function startTimer()
     --print("we made it")
     continueRunning = true
     runTimer()
+end
+
+local function sneezeSkyriding(skyridingType)
+	if skyridingType == "dragonrace" then
+		startTimer()
+	end
 end
 
