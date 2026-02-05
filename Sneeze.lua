@@ -27,7 +27,7 @@ local addonName, private = ...
 
 
 
-
+--This function handles catching criteria for achievements that have criteria.
 local function getCriteria(trackID)
 --GetAchievementNumCriteria() is necessary to iterate through the various criteria for the achievement.
 	local criteriaNum = GetAchievementNumCriteria(trackID)
@@ -47,9 +47,10 @@ end
 
 --On event ZONE_CHANGED_NEW_AREA, we update script-wide variables for zone and subzone.
 local function playerZoneGen(subZone)
-	minorZone = subZone
-	majorZone = GetRealZoneText()
-	print(majorZone)
+	if minorZone ~= subZone then
+		minorZone = subZone
+		majorZone = GetRealZoneText()
+	end
 end
 
 --[[local function mapInfo(mapID)
@@ -57,12 +58,6 @@ end
 	--print(whatIs.name)
 end]]--
 
-local function sneezeSkyriding(skyridingType)
-	if skyridingType == "dragonrace" then
-		private.startTimer()
-	end
-	--This should track time and display a timer.
-end
 
 --Table of event triggers.
 local eventHandlers = {
@@ -70,7 +65,7 @@ local eventHandlers = {
 		local msg = ...
 		if msg == "GO!" then
 			local skyridingType = "dragonrace"
-			sneezeSkyriding(skyridingType)
+			private.sneezeSkyriding(skyridingType)
 		end
 	end,
 	["CONTENT_TRACKING_UPDATE"] = function (self, event, ...)
