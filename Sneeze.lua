@@ -85,7 +85,7 @@ local eventHandlers = {
 eventHandlers.ZONE_CHANGED=eventHandlers.ZONE_CHANGED_NEW_AREA
 
 
-local function validateCatId(achieveCat)
+local function validateCatID(achieveCat)
 	--Categories of achievements can be nested. We need to ensure we are only tracking certain categories.
 	if private.professionCatTable[achieveCat] then
 		private.catchProfCategory(achieveCat)
@@ -96,7 +96,7 @@ local function catchAchievementOnEnter(_self, ...)
 	--var2 is the achievementID that we need to catch
 	local _var1, achieveID = ...
 	local achieveCat = GetAchievementCategory(achieveID)
-	validateCatId(achieveCat)
+	validateCatID(achieveCat)
 	--print(achieveID)
 	--print(achieveCat)
 	--Send achieveID to be evaluated for distance.
