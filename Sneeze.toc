@@ -6,6 +6,7 @@
 ## Dependencies: Blizzard_AchievementUI
 
 Sneeze.lua
+SneezeMapping.lua
 SneezeProfessionHandler.lua
 SneezeWEHandler.lua
 SneezeQPHandler.lua

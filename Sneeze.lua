@@ -5,12 +5,13 @@ Detects nearby tracked achievement objectives (150yd) and places a discreet arro
 Hovering over the tracked achievement objective will result in a yes/no menu asking if user wishes to navigate to objective (distance independent).
 --]]
 
+local addonName, private = ...
 local playerName = UnitName("player")
 local playerLevel = UnitLevel("player")
 local cFrame = CreateFrame("Frame")
-local majorZone
-local minorZone
-local addonName, private = ...
+private.majorZone = GetRealZoneText()
+private.minorZone = GetSubZoneText()
+
 
 --SneezeSkyriding -> dragon races can cue on CHAT_MSG_MONSTER_SAY first return value "GO!"
 --TRACKED_ACHIEVEMENT_UPDATE
