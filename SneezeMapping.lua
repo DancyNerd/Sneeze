@@ -3,8 +3,17 @@ This will be used by various Sneeze scripts to determine things like location, d
 ]]--
 
 local addonName, private = ...
+local constMapID = C_Map.GetBestMapForUnit("player")
 
-
+private.mappingNeeds = {
+	["Delve"] = C_QuestLog.GetZoneStoryInfo(constMapID),
+	["Dungeon"] = "Dungeon",
+	["Raid"] = "Raid",
+	["City"] = "City",
+	["Major Landmark"] = "Major Landmark",
+	["Quest"] = "Quest",
+	["Profession Trainer"] = "Profession Trainer",
+}
 
 
 
@@ -12,7 +21,7 @@ local addonName, private = ...
 
 
 function private.catchMappingNeeds(mappingNeed)
-    --Catch mapping needs from other scripts.
+	return private.mappingNeeds[mappingNeed]
 end
 
 

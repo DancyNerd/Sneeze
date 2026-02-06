@@ -48,9 +48,9 @@ end
 
 --On event ZONE_CHANGED_NEW_AREA, we update script-wide variables for zone and subzone.
 local function playerZoneGen(subZone)
-	if minorZone ~= subZone then
-		minorZone = subZone
-		majorZone = GetRealZoneText()
+	if private.minorZone ~= subZone then
+		private.minorZone = subZone
+		private.majorZone = GetRealZoneText()
 	end
 end
 
@@ -63,8 +63,8 @@ end]]--
 --Table of event triggers.
 local eventHandlers = {
 	["CHAT_MSG_MONSTER_SAY"] = function (self, event,...)
-		local msg = ...
-		if msg == "GO!" then
+		local monsterSays = ...
+		if monsterSays == "GO!" then
 			local skyridingType = "dragonrace"
 			private.sneezeSkyriding(skyridingType)
 		end
@@ -75,9 +75,15 @@ local eventHandlers = {
 	 end,
 	["ZONE_CHANGED_NEW_AREA"] = function (...)
 		local subZone = GetSubZoneText()
-		print(subZone)
 		if subZone then
 			playerZoneGen(subZone)
+		end
+	end,
+	[CHAT_MSG_SYSTEM] = function (self, event, ...)
+		local systemSays = ...
+		if systemSays == "Dungeon Difficulty set to Delves." then
+			local typeOfInstance = "Delve"
+			private.instanceType(typeOfInstance)
 		end
 	end,
 }
