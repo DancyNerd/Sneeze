@@ -22,9 +22,7 @@ private.mappingNeeds = {
 
 function private.catchMappingNeeds(mappingNeed)
 	if mappingNeed == "Delve" then
-		local delveID = private.delveIDMap[private.majorzone]
-		print("attempting to retrieve POI info ")
-		return C_AreaPoiInfo.GetAreaPOIInfo(constMapID, delveID)
+		return constMapID
 	end
 end
 

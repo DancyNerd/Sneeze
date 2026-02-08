@@ -91,15 +91,17 @@ private.bountifulDelveIDMap = {
 }
 
 
-
+--We might be able to use the tooltipWidgetSet id/number return to determine if use has completed the corresponding delve story. This is a big if as I have no idea whether they do in fact correspond.
 local function delveStory(playerMapID)
     local delveInfo
-    if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.delveIDMap[private.majorZone]) then
-        local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.delveIDMap[private.majorZone])
-        print(delveInfo.description)
+    local delveUnbountiful = private.delveIDMap[private.majorZone]
+    local delveBountiful = private.bountifulDelveIDMap[private.majorZone]
+    if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful) then
+        local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful)
+        print(delveInfo.name)
     else
-        delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.bountifulDelveIDMap[private.majorZone])
-        print("Delve is bountiful " .. delveInfo.description)
+        delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveBountiful)
+        print("Delve is bountiful and " .. delveInfo.name)
     end
 end
 

@@ -22,12 +22,13 @@ local eventHandlers = {
     ["CHAT_MSG_MONSTER_SAY"] = function(self, event, ...)
         if private.playerInCombat then
             return
-        end
-        local monsterSays, monsterType = ...
-        local startCue = "GO!"
-        if monsterSays ~= startCue then
-          if string.find(monsterType, "Timekeeper") then
-                continueRunning = false
+        else
+            local monsterSays, monsterType = ...
+            local startCue = "GO!"
+            if monsterSays ~= startCue then
+            if string.find(monsterType, "Timekeeper") then
+                    continueRunning = false
+                end
             end
         end
     end,
