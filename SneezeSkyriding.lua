@@ -20,14 +20,15 @@ local TIME_INTERVAL = 0.25
 
 local eventHandlers = {
     ["CHAT_MSG_MONSTER_SAY"] = function(self, event, ...)
+        if private.playerInCombat then
+            return
+        end
         local monsterSays, monsterType = ...
         local startCue = "GO!"
-        if monsterSays ~= startCue and monsterType == "Bronze Timekeeper" then
-            continueRunning = false
-        elseif monsterSays ~= startCue and monsterType == "Grimy Timekeeper" then
-            continueRunning = false
-        elseif monsterSays ~= startCue and monsterType == "Bronze Timekeeper Assistant" then
-            continueRunning = false
+        if monsterSays ~= startCue then
+          if string.find(monsterType, "Timekeeper") then
+                continueRunning = false
+            end
         end
     end,
     ["LOADING_SCREEN_ENABLED"] = function(self, event, ...)
@@ -70,7 +71,7 @@ local function startTimer()
 end
 
 --Handling for which skyriding type we're being called for.
-local function sneezeSkyriding(skyridingType)
+function private.sneezeSkyriding(skyridingType)
 	if skyridingType == "dragonrace" then
 		startTimer()
 	end

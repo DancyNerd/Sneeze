@@ -11,6 +11,7 @@ local playerLevel = UnitLevel("player")
 local cFrame = CreateFrame("Frame")
 private.majorZone = GetRealZoneText()
 private.minorZone = GetSubZoneText()
+private.playerInCombat = false
 
 
 --SneezeSkyriding -> dragon races can cue on CHAT_MSG_MONSTER_SAY first return value "GO!"
@@ -47,10 +48,14 @@ local function getCriteria(trackID)
 end
 
 --On event ZONE_CHANGED_NEW_AREA, we update script-wide variables for zone and subzone.
-local function playerZoneGen(subZone)
-	if private.minorZone ~= subZone then
-		private.minorZone = subZone
+local function playerZoneGen(subZone, newZone)
+	if private.minorZone ~= subZone or private.majorZone ~= newZone then
+		private.minorZone = GetSubZoneText()
 		private.majorZone = GetRealZoneText()
+		if private.instanceTypeMap[private.majorZone] then
+			local typeOfInstance = private.instanceTypeMap[private.majorZone]
+			private.instanceType(typeOfInstance)
+		end
 	end
 end
 
@@ -62,11 +67,27 @@ end]]--
 
 --Table of event triggers.
 local eventHandlers = {
+	["PLAYER_REGEN_DISABLED"] = function(self, event, ...)
+		private.playerInCombat = true
+	end,
+	["PLAYER_REGEN_ENABLED"] = function(self, event, ...)
+		private.playerInCombat = false
+	end,
+	["PLAYER_ENTER_COMBAT"] = function (self, event, ...)
+		private.playerInCombat = true
+	end,
+	["PLAYER_LEAVE_COMBAT"] = function(self, event, ...)
+		private.playerInCombat = false
+	end,
 	["CHAT_MSG_MONSTER_SAY"] = function (self, event,...)
-		local monsterSays = ...
-		if monsterSays == "GO!" then
-			local skyridingType = "dragonrace"
-			private.sneezeSkyriding(skyridingType)
+		if private.playerInCombat then
+			return
+		else
+			local monsterSays = ...
+			if monsterSays == "GO!" then
+				local skyridingType = "dragonrace"
+				private.sneezeSkyriding(skyridingType)
+			end
 		end
 	end,
 	["CONTENT_TRACKING_UPDATE"] = function (self, event, ...)
@@ -75,16 +96,8 @@ local eventHandlers = {
 	 end,
 	["ZONE_CHANGED_NEW_AREA"] = function (...)
 		local subZone = GetSubZoneText()
-		if subZone then
-			playerZoneGen(subZone)
-		end
-	end,
-	[CHAT_MSG_SYSTEM] = function (self, event, ...)
-		local systemSays = ...
-		if systemSays == "Dungeon Difficulty set to Delves." then
-			local typeOfInstance = "Delve"
-			private.instanceType(typeOfInstance)
-		end
+		local newZone = GetRealZoneText()
+		playerZoneGen(subZone, newZone)
 	end,
 }
 

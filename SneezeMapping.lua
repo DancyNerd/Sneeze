@@ -6,7 +6,7 @@ local addonName, private = ...
 local constMapID = C_Map.GetBestMapForUnit("player")
 
 private.mappingNeeds = {
-	["Delve"] = C_QuestLog.GetZoneStoryInfo(constMapID),
+	["Delve"] = "Delve",
 	["Dungeon"] = "Dungeon",
 	["Raid"] = "Raid",
 	["City"] = "City",
@@ -21,7 +21,11 @@ private.mappingNeeds = {
 
 
 function private.catchMappingNeeds(mappingNeed)
-	return private.mappingNeeds[mappingNeed]
+	if mappingNeed == "Delve" then
+		local delveID = private.delveIDMap[private.majorzone]
+		print("attempting to retrieve POI info ")
+		return C_AreaPoiInfo.GetAreaPOIInfo(constMapID, delveID)
+	end
 end
 
 
