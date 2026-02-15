@@ -21,3 +21,10 @@ private.repCharCatTable = {
     [15530] = "War Within",
     [15600] = "Midnight"
 }
+
+
+
+
+function private.catchRepCharCategory(achieveCat)
+    
+end

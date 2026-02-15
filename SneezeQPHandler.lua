@@ -21,3 +21,9 @@ private.questCatTable = {
     [15506] = "War Within",
     [15547] = "Midnight"
 }
+
+
+
+function private.catchQuestPVPCategory(achieveCat)
+    
+end

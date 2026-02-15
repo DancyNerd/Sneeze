@@ -14,11 +14,11 @@ private.minorZone = GetSubZoneText()
 private.playerInCombat = false
 
 
-private.generalAchieveCatShortTable = {
-    [92] = "General Character",
-    [96] = "General Quests",
-    [97] = "General Exploration",
-    [95] = "General Player vs. Player",
+local generalAchieveCatShortTable = {
+    [92] = private.catchRepCharCategory,
+    [96] = private.catchQuestPVPCategory,
+    [97] = private.catchExplorationCategory,
+    [95] = private.catchQuestPVPCategory,
     [81] = "General Feats of Strength"
 }
 
@@ -114,7 +114,9 @@ eventHandlers.ZONE_CHANGED=eventHandlers.ZONE_CHANGED_NEW_AREA
 
 --This function finds the appropriate handler for the achievement category.
 local function validateCatID(achieveCat)
-	if private.professionCatTable[achieveCat] then
+	if achieveCat < 100 and generalAchieveCatShortTable[achieveCat] then
+		generalAchieveCatShortTable[achieveCat](achieveCat)
+	elseif private.professionCatTable[achieveCat] then
 		private.catchProfCategory(achieveCat)
 	end
 end
