@@ -1,6 +1,6 @@
 --[[
 This script is to handle instance-oriented categories of achievements.
-Specified eveents from Sneeze.lua will be used to trigger functions here.
+Specified events from Sneeze.lua will be used to trigger functions here.
 ]]--
 
 local addonName, private = ...
@@ -11,6 +11,7 @@ Instead af trying to catch the delves and return whether it is missing story mid
 We should be able to get the achievement data from the achievement, but we might have to key delves to achievement IDs rather than their item IDs for the map.
 Since both might be helpful, we can leave the tables as they are and just add the new one for now.
 ]]--
+
 
 private.instanceTypeMap = {
     ["Uldaman: Legacy of Tyr"] = "Dungeon",
@@ -90,18 +91,21 @@ private.bountifulDelveIDMap = {
     ["Sidestreet Sluice"] = 8246
 }
 
+--
 
---We might be able to use the tooltipWidgetSet id/number return to determine if use has completed the corresponding delve story. This is a big if as I have no idea whether they do in fact correspond.
+--delve achievement category ID for The War Within is 15523
+
+--We might be able to use the tooltipWidgetSet id/number return to determine if user has completed the corresponding delve story. This is a big if as I have no idea what it actually corresponds to.
 local function delveStory(playerMapID)
     local delveInfo
     local delveUnbountiful = private.delveIDMap[private.majorZone]
     local delveBountiful = private.bountifulDelveIDMap[private.majorZone]
     if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful) then
         local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful)
-        print(delveInfo.name)
+        print(delveInfo.tooltipWidgetSet)
     else
         delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveBountiful)
-        print("Delve is bountiful and " .. delveInfo.name)
+        print("Delve is bountiful and " .. delveInfo.tooltipWidgetSet)
     end
 end
 

@@ -1,6 +1,6 @@
 --[[
 This script is to handle the Dragonrace and Glyph Hunter categories of achievements.
-Specified eveents from Sneeze.lua will be used to trigger functions here.
+Specified events from Sneeze.lua will be used to trigger functions here.
 ]]--
 
 local addonName, private = ...

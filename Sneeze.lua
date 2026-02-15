@@ -14,6 +14,14 @@ private.minorZone = GetSubZoneText()
 private.playerInCombat = false
 
 
+private.generalAchieveCatShortTable = {
+    [92] = "General Character",
+    [96] = "General Quests",
+    [97] = "General Exploration",
+    [95] = "General Player vs. Player",
+    [81] = "General Feats of Strength"
+}
+
 --SneezeSkyriding -> dragon races can cue on CHAT_MSG_MONSTER_SAY first return value "GO!"
 --TRACKED_ACHIEVEMENT_UPDATE
 --RECEIVED_ACHIEVEMENT_LIST - this might actually be a useless event. I can't find it anywhere in the interface dump.
@@ -30,13 +38,13 @@ private.playerInCombat = false
 
 
 --This function handles catching criteria for achievements that have criteria.
-local function getCriteria(trackID)
+local function getCriteria(trackedAchievementID)
 --GetAchievementNumCriteria() is necessary to iterate through the various criteria for the achievement.
-	local criteriaNum = GetAchievementNumCriteria(trackID)
+	local criteriaNum = GetAchievementNumCriteria(trackedAchievementID)
 	--print(criteriaNum)
 	local catchCriteria = {}
 	for i=1, criteriaNum do
-		local criteriaInfo, _toss1, criteriaCompleted, _toss2, _toss3, _toss4, _toss5, _toss6, _toss7, criterID = GetAchievementCriteriaInfo(trackID, i)
+		local criteriaInfo, _toss1, criteriaCompleted, _toss2, _toss3, _toss4, _toss5, _toss6, _toss7, criterID = GetAchievementCriteriaInfo(trackedAchievementID, i)
 		if not criteriaCompleted then
 			catchCriteria[i] = criteriaInfo
 			local xLoc, yLoc, dist = ClosestGameObjectPosition(criterID)
@@ -104,9 +112,8 @@ local eventHandlers = {
 --Declare that ZONE_CHANGED and ZONE_CHANGED_NEW_AREA can be used interchangeably.
 eventHandlers.ZONE_CHANGED=eventHandlers.ZONE_CHANGED_NEW_AREA
 
-
+--This function finds the appropriate handler for the achievement category.
 local function validateCatID(achieveCat)
-	--Categories of achievements can be nested. We need to ensure we are only tracking certain categories.
 	if private.professionCatTable[achieveCat] then
 		private.catchProfCategory(achieveCat)
 	end
@@ -115,14 +122,37 @@ end
 local function catchAchievementOnEnter(_self, ...)
 	--var2 is the achievementID that we need to catch
 	local _var1, achieveID = ...
-	local achieveCat = GetAchievementCategory(achieveID)
+	local achieveCat = GetAchievementCategory(achieveID) --using blizz function to get achieveCat from achieveID in the mouse over.
 	validateCatID(achieveCat)
 	--print(achieveID)
 	--print(achieveCat)
 	--Send achieveID to be evaluated for distance.
 end
 
+--Function for determining type of POI and sending to appropriate add-on handler section.
+function private.findPoiType(poiName)
+	if private.instanceTypeMap[poiName] then
+		local typeOfInstance = private.instanceTypeMap[poiName]
+		private.instanceType(typeOfInstance)
+	end
+	
+end
+
+--Table returned by AreaPOIPin.MouseOver .name will be equal to name of instance/poi IE "delve name"
+--Other possibly useful items include .UpdateTooltip .GetDisplayName .AddCustomTooltipData .GetDataProvider
+--The other possibly useful items are all functions stored in the table. Currently unsure as to how to use them. Pretty sure I need UpdateTooltip or AddCustomTooltipData.
+local function catchPOIMouseOver(_self, ...)
+	local mouseOver
+	if ... then
+		mouseOver = ...
+		local poiName = mouseOver.name
+		private.findPoiType(poiName)
+	end
+		
+end
+
 EventRegistry:RegisterCallback("AchievementFrameAchievement.OnEnter", catchAchievementOnEnter)
+EventRegistry:RegisterCallback("AreaPOIPin.MouseOver", catchPOIMouseOver)
 
 for eventName in pairs(eventHandlers) do
 	cFrame:RegisterEvent(eventName)
