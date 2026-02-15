@@ -19,7 +19,7 @@ local generalAchieveCatShortTable = {
     [96] = private.catchQuestPVPCategory,
     [97] = private.catchExplorationCategory,
     [95] = private.catchQuestPVPCategory,
-    [81] = "General Feats of Strength"
+    [81] = private.catchFeatsCat
 }
 
 --SneezeSkyriding -> dragon races can cue on CHAT_MSG_MONSTER_SAY first return value "GO!"
