@@ -14,6 +14,7 @@ private.minorZone = GetSubZoneText()
 private.playerInCombat = false
 
 
+--Shorthand table for generic achievement categories to expedite process where possible.
 local generalAchieveCatShortTable = {
     [92] = private.catchRepCharCategory,
     [96] = private.catchQuestPVPCategory,
