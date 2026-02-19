@@ -19,17 +19,16 @@ Since both might be helpful, we can leave the tables as they are and just add th
 
 
 local function delveStory()
-    local delveInfo
-    local playerMapID = C_Map.GetBestMapForUnit("player")
-    local delveUnbountiful = private.instanceTypeMap[instanceName].instanceID
-    local delveBountiful = private.instanceTypeMap[instanceName].bountifulID
-    if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful) then
-        local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful)
-        print("Delve is not bountiful and " .. instanceName)
-        --print(delveInfo.tooltipWidgetSet)
-    else
-        delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveBountiful)
-        print("Delve is bountiful and " .. instanceName)
+    if private.instanceName then
+        local delveInfo
+        local playerMapID = C_Map.GetBestMapForUnit("player")
+        if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.instanceID) then
+            local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.instanceID)
+            --print("Delve is not bountiful and " .. private.instanceName)
+        else
+            delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.bountifulID)
+            --print("Delve is bountiful and " .. private.instanceName)
+        end
     end
 end
 
@@ -165,84 +164,98 @@ private.instanceTypeMap = {
         private.instanceID = 7873
         private.bountifulID = 7784
         private.instanceName = "Tak-Rethan Abyss"
+        delveStory()
     end,
     ["Skittering Breach"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7871
         private.bountifulID = 7789
         private.instanceName = "Skittering Breach"
+        delveStory()
     end,
     ["The Sinkhole"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7870
         private.bountifulID = 7783
         private.instanceName = "The Sinkhole"
+        delveStory()
     end,
     ["Nightfall Sanctum"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7868
         private.bountifulID = 7785
         private.instanceName = "Nightfall Sanctum"
+        delveStory()
     end,
     ["Mycomancer Cavern"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7869
         private.bountifulID = 7780
         private.instanceName = "Mycomancer Cavern"
+        delveStory()
     end,
     ["Fungal Folly"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7864
         private.bountifulID = 7779
         private.instanceName = "Fungal Folly"
+        delveStory()
     end,
     ["Earthcrawl Mines"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7863
         private.bountifulID = 7787
         private.instanceName = "Earthcrawl Mines"
+        delveStory()
     end,
     ["Kriegval's Rest"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7865
         private.bountifulID = 7781
         private.instanceName = "Kriegval's Rest"
+        delveStory()
     end,
     ["The Spiral Weave"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7874
         private.bountifulID = 7790
         private.instanceName = "The Spiral Weave"
+        delveStory()
     end,
     ["The Underkeep"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7872
         private.bountifulID = 7786
         private.instanceName = "The Underkeep"
+        delveStory()
     end,
     ["The Dread Pit"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7867
         private.bountifulID = 7788
         private.instanceName = "The Dread Pit"
+        delveStory()
     end,
     ["The Waterworks"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7866
         private.bountifulID = 7782
         private.instanceName = "The Waterworks"
+        delveStory()
     end,
     ["Excavation Site 9"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7870
         private.bountifulID = 7783
         private.instanceName = "Excavation Site 9"
+        delveStory()
     end,
     ["Sidestreet Sluice"] = function()
         private.instanceType = "Delve"
         private.instanceID = 7871
         private.bountifulID = 7789
         private.instanceName = "Sidestreet Sluice"
+        delveStory()
     end,
     ["Demolition Dome"] = function()
         private.instanceType = "Delve"
@@ -259,12 +272,12 @@ private.instanceTypeMap = {
 --delve achievement category ID for The War Within is 15523
 
 
-function private.instanceType(typeOfInstance, instanceName)
+--[[function private.instanceType(typeOfInstance, instanceName)
     local playerMapID = private.catchMappingNeeds(typeOfInstance)
     if typeOfInstance == "Delve" then
         delveStory(playerMapID, instanceName)
     end
-end
+end]]--
 
 --CVAR_UPDATE "lastSelectedDelvesTier", "8"
 --CHAT_MSG_SYSTEM when first return var set to "Dungeon Difficulty set to Delves." trigger instance type delves and search for active story from poi info.

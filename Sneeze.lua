@@ -134,6 +134,9 @@ end
 --Function for determining type of POI and sending to appropriate add-on handler section.
 function private.findPoiType(poiName)
 	if private.instanceTypeMap[poiName] then
+
+		local tooltipItem = C_TooltipInfo.GetMinimapMouseover()
+		print(tooltipItem.lines)
 		private.instanceTypeMap[poiName]()
 	end
 	
