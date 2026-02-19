@@ -62,8 +62,7 @@ local function playerZoneGen(subZone, newZone)
 		private.minorZone = GetSubZoneText()
 		private.majorZone = GetRealZoneText()
 		if private.instanceTypeMap[private.majorZone] then
-			local typeOfInstance = private.instanceTypeMap[private.majorZone]
-			private.instanceType(typeOfInstance)
+			private.instanceTypeMap[private.majorZone]()
 		end
 	end
 end
@@ -135,8 +134,7 @@ end
 --Function for determining type of POI and sending to appropriate add-on handler section.
 function private.findPoiType(poiName)
 	if private.instanceTypeMap[poiName] then
-		local typeOfInstance = private.instanceTypeMap[poiName]
-		private.instanceType(typeOfInstance)
+		private.instanceTypeMap[poiName]()
 	end
 	
 end

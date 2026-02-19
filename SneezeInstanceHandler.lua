@@ -4,6 +4,10 @@ Specified events from Sneeze.lua will be used to trigger functions here.
 ]]--
 
 local addonName, private = ...
+private.instanceType = ""
+private.instanceName = ""
+private.bountifulID = 0
+private.instanceID = 0
 
 --[[
 This may need to function very differently from how I originally imagined. The delve stories are only visible as an XML element when viewing the difficulty picker.
@@ -13,108 +17,254 @@ Since both might be helpful, we can leave the tables as they are and just add th
 ]]--
 
 
+
+local function delveStory()
+    local delveInfo
+    local playerMapID = C_Map.GetBestMapForUnit("player")
+    local delveUnbountiful = private.instanceTypeMap[instanceName].instanceID
+    local delveBountiful = private.instanceTypeMap[instanceName].bountifulID
+    if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful) then
+        local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful)
+        print("Delve is not bountiful and " .. instanceName)
+        --print(delveInfo.tooltipWidgetSet)
+    else
+        delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveBountiful)
+        print("Delve is bountiful and " .. instanceName)
+    end
+end
+
 private.instanceTypeMap = {
-    ["Uldaman: Legacy of Tyr"] = "Dungeon",
-    ["Halls of Infusion"] = "Dungeon",
-    ["Algeth'ar Academy"] = "Dungeon",
-    ["Brackenhide Hollow"] = "Dungeon",
-    ["Mists of Tirna Scithe"] = "Dungeon",
-    ["The Azure Vault"] = "Dungeon",
-    ["The Nokhud Offensive"] = "Dungeon",
-    ["Ruby Life Pools"] = "Dungeon",
-    ["The Vortex Pinnacle"] = "Dungeon",
-    ["Black Rook Hold"] = "Dungeon",
-    ["Court of Stars"] = "Dungeon",
-    ["Darkheart Thicket"] = "Dungeon",
-    ["Eye of Azshara"] = "Dungeon",
-    ["Halls of Valor"] = "Dungeon",
-    ["Maw of Souls"] = "Dungeon",
-    ["Neltharion's Lair"] = "Dungeon",
-    ["The Arcway"] = "Dungeon",
-    ["The Black Temple"] = "Raid",
-    ["The Nighthold"] = "Raid",
-    ["Tomb of Sargeras"] = "Raid",
-    ["Antorus, the Burning Throne"] = "Raid",
-    ["Uldir"] = "Raid",
-    ["Battle of Dazar'alor"] = "Raid",
-    ["Crucible of Storms"] = "Raid",
-    ["Ny'alotha, the Waking City"] = "Raid",
-    ["Tak-Rethan Abyss"] = "Delve",
-    ["Skittering Breach"] = "Delve",
-    ["The Sinkhole"] = "Delve",
-    ["Nightfall Sanctum"] = "Delve",
-    ["Mycomancer Cavern"] = "Delve",
-    ["Fungal Folly"] = "Delve",
-    ["Earthcrawl Mines"] = "Delve",
-    ["Kriegval's Rest"] = "Delve",
-    ["The Spiral Weave"] = "Delve",
-    ["The Underkeep"] = "Delve",
-    ["The Dread Pit"] = "Delve",
-    ["The Waterworks"] = "Delve",
-    ["Excavation Site 9"] = "Delve",
-    ["Sidestreet Sluice"] = "Delve",
-    ["Demolition Dome"] = "Delve"
+    ["Uldaman: Legacy of Tyr"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 7216
+        private.instanceName = "Uldaman: Legacy of Tyr"
+    end,
+    ["Halls of Infusion"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 7210
+        private.instanceName = "Halls of Infusion"
+    end,
+    ["Algeth'ar Academy"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 7213
+        private.instanceName = "Algeth'ar Academy"
+    end,
+    ["Brackenhide Hollow"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 7209
+        private.instanceName = "Brackenhide Hollow"
+    end,
+    ["Mists of Tirna Scithe"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 6586
+        private.instanceName = "Mists of Tirna Scithe"
+    end,
+    ["The Azure Vault"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 7214
+        private.instanceName = "The Azure Vault"
+    end,
+    ["The Nokhud Offensive"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 7215
+        private.instanceName = "The Nokhud Offensive"
+    end,
+    ["Ruby Life Pools"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 7212
+        private.instanceName = "Ruby Life Pools"
+    end,
+    ["The Vortex Pinnacle"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 6685
+        private.instanceName = "The Vortex Pinnacle"
+    end,
+    ["Black Rook Hold"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 5093
+        private.instanceName = "Black Rook Hold"
+    end,
+    ["Court of Stars"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 5100
+        private.instanceName = "Court of Stars"
+    end,
+    ["Darkheart Thicket"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 5094
+        private.instanceName = "Darkheart Thicket"
+    end,
+    ["Eye of Azshara"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 5091
+        private.instanceName = "Eye of Azshara"
+    end,
+    ["Halls of Valor"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 6091
+        private.instanceName = "Halls of Valor"
+    end,
+    ["Maw of Souls"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 5097
+        private.instanceName = "Maw of Souls"
+    end,
+    ["Neltharion's Lair"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 5103
+        private.instanceName = "Neltharion's Lair"
+    end,
+    ["The Arcway"] = function()
+        private.instanceType = "Dungeon"
+        private.instanceID = 5099
+        private.instanceName = "The Arcway"
+    end,
+    ["Black Temple"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 6532
+        private.instanceName = "Black Temple"
+    end,
+    ["The Nighthold"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 5101
+        private.instanceName = "The Nighthold"
+    end,
+    ["Tomb of Sargeras"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 5250
+        private.instanceName = "Tomb of Sargeras"
+    end,
+    ["Antorus, the Burning Throne"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 5440
+        private.instanceName = "Antorus, the Burning Throne"
+    end,
+    ["Uldir"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 5842
+        private.instanceName = "Uldir"
+    end,
+    ["Battle of Dazar'alor"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 6013
+        private.instanceName = "Battle of Dazar'alor"
+    end,
+    ["Crucible of Storms"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 6116
+        private.instanceName = "Crucible of Storms"
+    end,
+    ["Ny'alotha, the Waking City"] = 6539,
+    ["Serpentshrine Cavern"] = function()
+        private.instanceType = "Raid"
+        private.instanceID = 6530
+        private.instanceName = "Serpentshrine Cavern"
+    end,
+    ["Tak-Rethan Abyss"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7873
+        private.bountifulID = 7784
+        private.instanceName = "Tak-Rethan Abyss"
+    end,
+    ["Skittering Breach"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7871
+        private.bountifulID = 7789
+        private.instanceName = "Skittering Breach"
+    end,
+    ["The Sinkhole"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7870
+        private.bountifulID = 7783
+        private.instanceName = "The Sinkhole"
+    end,
+    ["Nightfall Sanctum"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7868
+        private.bountifulID = 7785
+        private.instanceName = "Nightfall Sanctum"
+    end,
+    ["Mycomancer Cavern"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7869
+        private.bountifulID = 7780
+        private.instanceName = "Mycomancer Cavern"
+    end,
+    ["Fungal Folly"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7864
+        private.bountifulID = 7779
+        private.instanceName = "Fungal Folly"
+    end,
+    ["Earthcrawl Mines"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7863
+        private.bountifulID = 7787
+        private.instanceName = "Earthcrawl Mines"
+    end,
+    ["Kriegval's Rest"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7865
+        private.bountifulID = 7781
+        private.instanceName = "Kriegval's Rest"
+    end,
+    ["The Spiral Weave"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7874
+        private.bountifulID = 7790
+        private.instanceName = "The Spiral Weave"
+    end,
+    ["The Underkeep"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7872
+        private.bountifulID = 7786
+        private.instanceName = "The Underkeep"
+    end,
+    ["The Dread Pit"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7867
+        private.bountifulID = 7788
+        private.instanceName = "The Dread Pit"
+    end,
+    ["The Waterworks"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7866
+        private.bountifulID = 7782
+        private.instanceName = "The Waterworks"
+    end,
+    ["Excavation Site 9"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7870
+        private.bountifulID = 7783
+        private.instanceName = "Excavation Site 9"
+    end,
+    ["Sidestreet Sluice"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7871
+        private.bountifulID = 7789
+        private.instanceName = "Sidestreet Sluice"
+    end,
+    ["Demolition Dome"] = function()
+        private.instanceType = "Delve"
+        private.instanceID = 7873
+        private.bountifulID = 7784
+        private.instanceName = "Demolition Dome"
+        delveStory()
+    end
 }
 
-private.delveIDMap = {
-    ["Mycomancer Cavern"] = 7869,
-    ["Nightfall Sanctum"] = 7868,
-    ["The Sinkhole"] = 7870,
-    ["Skittering Breach"] = 7871,
-    ["Tak-Rethan Abyss"] = 7873,
-    ["Fungal Folly"] = 7864,
-    ["Earthcrawl Mines"] = 7863,
-    ["Kriegval's Rest"] = 7865,
-    ["The Spiral Weave"] = 7874,
-    ["The Underkeep"] = 7872,
-    ["The Dread Pit"] = 7867,
-    ["The Waterworks"] = 7866,
-    ["Excavation Site 9"] = 8143,
-    ["Sidestreet Sluice"] = 8140,
-    ["Demolotion Dome"] = 8142
-}
-
-private.bountifulDelveIDMap = {
-    ["Mycomancer Cavern"] = 7780,
-    ["Nightfall Sanctum"] = 7785,
-    ["The Sinkhole"] = 7783,
-    ["Skittering Breach"] = 7789,
-    ["Tak-Rethan Abyss"] = 7784,
-    ["Fungal Folly"] = 7779,
-    ["Earthcrawl Mines"] = 7787,
-    ["Kriegval's Rest"] = 7781,
-    ["The Spiral Weave"] = 7790,
-    ["The Underkeep"] = 7786,
-    ["The Dread Pit"] = 7788,
-    ["The Waterworks"] = 7782,
-    ["Excavation Site 9"] = 8181,
-    ["Sidestreet Sluice"] = 8246
-}
 
 --
 
 --delve achievement category ID for The War Within is 15523
 
---We might be able to use the tooltipWidgetSet id/number return to determine if user has completed the corresponding delve story. This is a big if as I have no idea what it actually corresponds to.
-local function delveStory(playerMapID)
-    local delveInfo
-    local delveUnbountiful = private.delveIDMap[private.majorZone]
-    local delveBountiful = private.bountifulDelveIDMap[private.majorZone]
-    if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful) then
-        local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveUnbountiful)
-        print(delveInfo.tooltipWidgetSet)
-    else
-        delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, delveBountiful)
-        print("Delve is bountiful and " .. delveInfo.tooltipWidgetSet)
-    end
-end
 
-function private.instanceType(typeOfInstance)
-    print(private.majorZone)
-    local fromMapping = private.catchMappingNeeds(typeOfInstance)
+function private.instanceType(typeOfInstance, instanceName)
+    local playerMapID = private.catchMappingNeeds(typeOfInstance)
     if typeOfInstance == "Delve" then
-        delveStory(fromMapping)
+        delveStory(playerMapID, instanceName)
     end
 end
 
 --CVAR_UPDATE "lastSelectedDelvesTier", "8"
+--CHAT_MSG_SYSTEM when first return var set to "Dungeon Difficulty set to Delves." trigger instance type delves and search for active story from poi info.

@@ -17,8 +17,11 @@ local TIME_INTERVAL = 0.25
 
 
 
-
+--Events that set continueRunning to false will stop the timer.
 local eventHandlers = {
+    ["DISPLAY_EVENT_TOASTS"] = function(self, event, ...) 
+        continueRunning = false
+    end,
     ["CHAT_MSG_MONSTER_SAY"] = function(self, event, ...)
         if private.playerInCombat then
             return
