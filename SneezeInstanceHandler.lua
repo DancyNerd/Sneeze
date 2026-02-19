@@ -33,231 +33,235 @@ local function delveStory()
 end
 
 private.instanceTypeMap = {
-    ["Uldaman: Legacy of Tyr"] = function()
+    ["Uldaman: Legacy of Tyr"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7216
         private.instanceName = "Uldaman: Legacy of Tyr"
     end,
-    ["Halls of Infusion"] = function()
+    ["Halls of Infusion"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7210
         private.instanceName = "Halls of Infusion"
     end,
-    ["Algeth'ar Academy"] = function()
+    ["Algeth'ar Academy"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7213
         private.instanceName = "Algeth'ar Academy"
     end,
-    ["Brackenhide Hollow"] = function()
+    ["Brackenhide Hollow"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7209
         private.instanceName = "Brackenhide Hollow"
     end,
-    ["Mists of Tirna Scithe"] = function()
+    ["Mists of Tirna Scithe"] = function() --Shadowlands
         private.instanceType = "Dungeon"
         private.instanceID = 6586
         private.instanceName = "Mists of Tirna Scithe"
     end,
-    ["The Azure Vault"] = function()
+    ["The Azure Vault"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7214
         private.instanceName = "The Azure Vault"
     end,
-    ["The Nokhud Offensive"] = function()
+    ["The Nokhud Offensive"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7215
         private.instanceName = "The Nokhud Offensive"
     end,
-    ["Ruby Life Pools"] = function()
+    ["Ruby Life Pools"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7212
         private.instanceName = "Ruby Life Pools"
     end,
-    ["The Vortex Pinnacle"] = function()
+    ["The Vortex Pinnacle"] = function() --Cataclysm
         private.instanceType = "Dungeon"
         private.instanceID = 6685
         private.instanceName = "The Vortex Pinnacle"
     end,
-    ["Black Rook Hold"] = function()
+    ["Black Rook Hold"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 5093
         private.instanceName = "Black Rook Hold"
     end,
-    ["Court of Stars"] = function()
+    ["Court of Stars"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 5100
         private.instanceName = "Court of Stars"
     end,
-    ["Darkheart Thicket"] = function()
+    ["Darkheart Thicket"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 5094
         private.instanceName = "Darkheart Thicket"
     end,
-    ["Eye of Azshara"] = function()
+    ["Eye of Azshara"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 5091
         private.instanceName = "Eye of Azshara"
     end,
-    ["Halls of Valor"] = function()
+    ["Halls of Valor"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 6091
         private.instanceName = "Halls of Valor"
     end,
-    ["Maw of Souls"] = function()
+    ["Maw of Souls"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 5097
         private.instanceName = "Maw of Souls"
     end,
-    ["Neltharion's Lair"] = function()
+    ["Neltharion's Lair"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 5103
         private.instanceName = "Neltharion's Lair"
     end,
-    ["The Arcway"] = function()
+    ["The Arcway"] = function() --Legion
         private.instanceType = "Dungeon"
         private.instanceID = 5099
         private.instanceName = "The Arcway"
     end,
-    ["Black Temple"] = function()
+    ["Black Temple"] = function() --Burning Crusades
         private.instanceType = "Raid"
         private.instanceID = 6532
         private.instanceName = "Black Temple"
     end,
-    ["The Nighthold"] = function()
+    ["The Nighthold"] = function() --Legion
         private.instanceType = "Raid"
         private.instanceID = 5101
         private.instanceName = "The Nighthold"
     end,
-    ["Tomb of Sargeras"] = function()
+    ["Tomb of Sargeras"] = function() --Legion
         private.instanceType = "Raid"
         private.instanceID = 5250
         private.instanceName = "Tomb of Sargeras"
     end,
-    ["Antorus, the Burning Throne"] = function()
+    ["Antorus, the Burning Throne"] = function() --Legion
         private.instanceType = "Raid"
         private.instanceID = 5440
         private.instanceName = "Antorus, the Burning Throne"
     end,
-    ["Uldir"] = function()
+    ["Uldir"] = function() --Battle for Azeroth
         private.instanceType = "Raid"
         private.instanceID = 5842
         private.instanceName = "Uldir"
     end,
-    ["Battle of Dazar'alor"] = function()
+    ["Battle of Dazar'alor"] = function() --Battle for Azeroth
         private.instanceType = "Raid"
         private.instanceID = 6013
         private.instanceName = "Battle of Dazar'alor"
     end,
-    ["Crucible of Storms"] = function()
+    ["Crucible of Storms"] = function() --Battle for Azeroth
         private.instanceType = "Raid"
         private.instanceID = 6116
         private.instanceName = "Crucible of Storms"
     end,
-    ["Ny'alotha, the Waking City"] = 6539,
-    ["Serpentshrine Cavern"] = function()
+    ["Ny'alotha, the Waking City"] = function() --Battle for Azeroth
+        private.instanceType = "Raid"
+        private.instanceID = 6539
+        private.instanceName = "Ny'alotha, the Waking City"
+    end,
+    ["Serpentshrine Cavern"] = function() --Burning Crusades
         private.instanceType = "Raid"
         private.instanceID = 6530
         private.instanceName = "Serpentshrine Cavern"
     end,
-    ["Tak-Rethan Abyss"] = function()
+    ["Tak-Rethan Abyss"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7873
         private.bountifulID = 7784
         private.instanceName = "Tak-Rethan Abyss"
         delveStory()
     end,
-    ["Skittering Breach"] = function()
+    ["Skittering Breach"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7871
         private.bountifulID = 7789
         private.instanceName = "Skittering Breach"
         delveStory()
     end,
-    ["The Sinkhole"] = function()
+    ["The Sinkhole"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7870
         private.bountifulID = 7783
         private.instanceName = "The Sinkhole"
         delveStory()
     end,
-    ["Nightfall Sanctum"] = function()
+    ["Nightfall Sanctum"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7868
         private.bountifulID = 7785
         private.instanceName = "Nightfall Sanctum"
         delveStory()
     end,
-    ["Mycomancer Cavern"] = function()
+    ["Mycomancer Cavern"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7869
         private.bountifulID = 7780
         private.instanceName = "Mycomancer Cavern"
         delveStory()
     end,
-    ["Fungal Folly"] = function()
+    ["Fungal Folly"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7864
         private.bountifulID = 7779
         private.instanceName = "Fungal Folly"
         delveStory()
     end,
-    ["Earthcrawl Mines"] = function()
+    ["Earthcrawl Mines"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7863
         private.bountifulID = 7787
         private.instanceName = "Earthcrawl Mines"
         delveStory()
     end,
-    ["Kriegval's Rest"] = function()
+    ["Kriegval's Rest"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7865
         private.bountifulID = 7781
         private.instanceName = "Kriegval's Rest"
         delveStory()
     end,
-    ["The Spiral Weave"] = function()
+    ["The Spiral Weave"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7874
         private.bountifulID = 7790
         private.instanceName = "The Spiral Weave"
         delveStory()
     end,
-    ["The Underkeep"] = function()
+    ["The Underkeep"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7872
         private.bountifulID = 7786
         private.instanceName = "The Underkeep"
         delveStory()
     end,
-    ["The Dread Pit"] = function()
+    ["The Dread Pit"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7867
         private.bountifulID = 7788
         private.instanceName = "The Dread Pit"
         delveStory()
     end,
-    ["The Waterworks"] = function()
+    ["The Waterworks"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7866
         private.bountifulID = 7782
         private.instanceName = "The Waterworks"
         delveStory()
     end,
-    ["Excavation Site 9"] = function()
+    ["Excavation Site 9"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7870
         private.bountifulID = 7783
         private.instanceName = "Excavation Site 9"
         delveStory()
     end,
-    ["Sidestreet Sluice"] = function()
+    ["Sidestreet Sluice"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7871
         private.bountifulID = 7789
         private.instanceName = "Sidestreet Sluice"
         delveStory()
     end,
-    ["Demolition Dome"] = function()
+    ["Demolition Dome"] = function() --The War Within
         private.instanceType = "Delve"
         private.instanceID = 7873
         private.bountifulID = 7784
