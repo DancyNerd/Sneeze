@@ -3,7 +3,7 @@ This will be used by various Sneeze scripts to determine things like location, d
 ]]--
 
 local addonName, private = ...
-local constMapID = C_Map.GetBestMapForUnit("player")
+private.constMapID = C_Map.GetBestMapForUnit("player")
 
 private.mappingNeeds = {
 	["Delve"] = "Delve",
@@ -21,9 +21,7 @@ private.mappingNeeds = {
 
 
 function private.catchMappingNeeds(mappingNeed)
-	if mappingNeed == "Delve" then
-		return constMapID
-	end
+	--This should catch and distribute complex mapping needs, but we don't have any as of yet.
 end
 
 

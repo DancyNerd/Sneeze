@@ -17,16 +17,16 @@ Since both might be helpful, we can leave the tables as they are and just add th
 ]]--
 
 
-
+--private.constMapID comes from SneezeMapping.
 local function delveStory()
     if private.instanceName then
         local delveInfo
-        local playerMapID = C_Map.GetBestMapForUnit("player")
-        if C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.instanceID) then
-            local delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.instanceID)
+        --local playerMapID = C_Map.GetBestMapForUnit("player")
+        if C_AreaPoiInfo.GetAreaPOIInfo(private.constMapID, private.instanceID) then
+            delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(private.constMapID, private.instanceID)
             --print("Delve is not bountiful and " .. private.instanceName)
         else
-            delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(playerMapID, private.bountifulID)
+            delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(private.constMapID, private.bountifulID)
             --print("Delve is bountiful and " .. private.instanceName)
         end
     end
@@ -117,6 +117,61 @@ private.instanceTypeMap = {
         private.instanceType = "Dungeon"
         private.instanceID = 5099
         private.instanceName = "The Arcway"
+    end,
+    ["The Dawnbreaker"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID =  7892
+        private.instanceName = "The Dawnbreaker"
+    end,
+    ["Priory of the Sacred Flame"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 7858
+        private.instanceName = "Priory of the Sacred Flame"
+    end,
+    ["Operation: Floodgate"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 8162
+        private.instanceName = "Operation: Floodgate"
+    end,
+    ["Darkflame Cleft"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 7821
+        private.instanceName = "Darkflame Cleft"
+    end,
+    ["The Stonevault"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 7820
+        private.instanceName = "The Stonevault"
+    end,
+    ["City of Threads"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 1
+        private.instanceName = "City of Threads"
+    end,
+    ["Ara-Kara, City of Echoes"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 2
+        private.instanceName = "Ara-Kara, City of Echoes"
+    end,
+    ["Cinderbrew Meadery"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 7857
+        private.instanceName = "Cinderbrew Meadery"
+    end,
+    ["Tazavesh, the Veiled Market"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 8374
+        private.instanceName = "Tazavesh, the Veiled Market"
+    end,
+    ["The Rookery"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 7655
+        private.instanceName = "The Rookery"
+    end,
+    ["Eco-Dome Al'Dani"] = function() --The War Within
+        private.instanceType = "Dungeon"
+        private.instanceID = 8321
+        private.instanceName = "Eco-Dome Al'Dani"
     end,
     ["Black Temple"] = function() --Burning Crusades
         private.instanceType = "Raid"

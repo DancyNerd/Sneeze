@@ -135,21 +135,23 @@ end
 function private.findPoiType(poiName)
 	if private.instanceTypeMap[poiName] then
 
-		local tooltipItem = C_TooltipInfo.GetMinimapMouseover()
-		print(tooltipItem.lines)
+		--local tooltipItem = C_TooltipInfo.GetMinimapMouseover()
+		--print(tooltipItem.lines)
 		private.instanceTypeMap[poiName]()
 	end
 	
 end
 
---Table returned by AreaPOIPin.MouseOver .name will be equal to name of instance/poi IE "delve name"
---Other possibly useful items include .UpdateTooltip .GetDisplayName .AddCustomTooltipData .GetDataProvider
---The other possibly useful items are all functions stored in the table. Currently unsure as to how to use them. Pretty sure I need UpdateTooltip or AddCustomTooltipData.
+--Table returned by AreaPOIPin.MouseOver .name will be equal to name of instance/poi IE "delve name", .description is type IE "delve".
 local function catchPOIMouseOver(_self, ...)
 	local mouseOver
 	if ... then
 		mouseOver = ...
 		local poiName = mouseOver.name
+		--local mouseTooltip = mouseOver.SetTexture and mouseOver:SetTexture()
+		--print(mouseTooltip)
+		--print(mouseOver.tooltipWidgetSet)
+		--print(mouseOver.journalInstanceID)
 		private.findPoiType(poiName)
 	end
 		
@@ -157,6 +159,7 @@ end
 
 EventRegistry:RegisterCallback("AchievementFrameAchievement.OnEnter", catchAchievementOnEnter)
 EventRegistry:RegisterCallback("AreaPOIPin.MouseOver", catchPOIMouseOver)
+EventRegistry:RegisterCallback("MapLegendPinOnEnter", catchPOIMouseOver)
 
 for eventName in pairs(eventHandlers) do
 	cFrame:RegisterEvent(eventName)
