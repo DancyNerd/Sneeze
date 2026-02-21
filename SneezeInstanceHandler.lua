@@ -33,6 +33,81 @@ local function delveStory()
 end
 
 private.instanceTypeMap = {
+    ["Ahn'kahet: The Old Kingdom"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 0
+        private.instanceName = "Ahn'kahet: The Old Kingdom"
+    end,
+    ["Azjol-Nerub"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 6
+        private.instanceName = "Azjol-Nerub"
+    end,
+    ["Drak'Tharon Keep"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 6
+        private.instanceName = "Drak'Tharon Keep"
+    end,
+    ["Gundrak"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 5
+        private.instanceName = "Gundrak"
+    end,
+    ["Halls of Lightning"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 5
+        private.instanceName = "Halls of Lightning"
+    end,
+    ["Halls of Reflection"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 3
+        private.instanceName = "Halls of Reflection"
+    end,
+    ["Halls of Stone"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 9
+        private.instanceName = "Halls of Stone"
+    end,
+    ["Pit of Saron"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 1
+        private.instanceName = "Pit of Saron"
+    end,
+    ["The Forge of Souls"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 6
+        private.instanceName = "The Forge of Souls"
+    end,
+    ["The Nexus"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 5
+        private.instanceName = "The Nexus"
+    end,
+    ["The Oculus"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 6
+        private.instanceName = "The Oculus"
+    end,
+    ["The Violet Hold"] = function() --This may be tricky due to Legion/Wrath overlap
+        private.instanceType = "Dungeon"
+        private.instanceID = 9
+        private.instanceName = "The Violet Hold"
+    end,
+    ["Trial of the Champion"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 3
+        private.instanceName = "Trial of the Champion"
+    end,
+    ["Utgarde Keep"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 6
+        private.instanceName = "Utgarde Keep"
+    end,
+    ["Utgarde Pinnacle"] = function() --Wrath of the Lich King
+        private.instanceType = "Dungeon"
+        private.instanceID = 7
+        private.instanceName = "Utgarde Pinnacle"
+    end,
     ["Uldaman: Legacy of Tyr"] = function() --Dragonflight
         private.instanceType = "Dungeon"
         private.instanceID = 7216
