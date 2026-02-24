@@ -25,6 +25,10 @@ private.repCharCatTable = {
 
 
 
-function private.catchRepCharCategory(achieveCat)
+function private.catchRepCharCategory()
+    local achieveCat = private.achieveCat
+    if private.repCharCatTable.achieveCat then
+        local achieveType = private.repCharCatTable.achieveCat
+    end
     
 end
