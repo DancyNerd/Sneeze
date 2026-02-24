@@ -12,6 +12,7 @@ local cFrame = CreateFrame("Frame")
 private.majorZone = GetRealZoneText()
 private.minorZone = GetSubZoneText()
 private.playerInCombat = false
+private.achieveCat = 0
 
 
 --Shorthand table for generic achievement categories to expedite process where possible.
@@ -113,19 +114,19 @@ local eventHandlers = {
 eventHandlers.ZONE_CHANGED=eventHandlers.ZONE_CHANGED_NEW_AREA
 
 --This function finds the appropriate handler for the achievement category.
-local function validateCatID(achieveCat)
+local function validateCatID()
 	if achieveCat < 100 and generalAchieveCatShortTable[achieveCat] then
-		generalAchieveCatShortTable[achieveCat](achieveCat)
-	elseif private.professionCatTable[achieveCat] then
-		private.catchProfCategory(achieveCat)
+		generalAchieveCatShortTable[private.achieveCat]()
+	elseif private.professionCatTable[private.achieveCat] then
+		private.catchProfCategory(private.achieveCat)
 	end
 end
 
 local function catchAchievementOnEnter(_self, ...)
 	--var2 is the achievementID that we need to catch
 	local _var1, achieveID = ...
-	local achieveCat = GetAchievementCategory(achieveID) --using blizz function to get achieveCat from achieveID in the mouse over.
-	validateCatID(achieveCat)
+	private.achieveCat = GetAchievementCategory(achieveID) --using blizz function to get achieveCat from achieveID in the mouse over.
+	validateCatID()
 	--print(achieveID)
 	--print(achieveCat)
 	--Send achieveID to be evaluated for distance.
