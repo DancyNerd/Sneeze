@@ -12,6 +12,7 @@ local cFrame = CreateFrame("Frame")
 private.majorZone = GetRealZoneText()
 private.minorZone = GetSubZoneText()
 private.playerInCombat = false
+private.thisCatID = 0
 
 
 --Shorthand table for generic achievement categories to expedite process where possible.
@@ -150,7 +151,7 @@ local function catchPOIMouseOver(_self, ...)
 		local poiName = mouseOver.name
 		--local mouseTooltip = mouseOver.SetTexture and mouseOver:SetTexture()
 		--print(mouseTooltip)
-		--print(mouseOver.tooltipWidgetSet)
+		--print(mouseOver.poiInfo.linkedUiMapID)
 		--print(mouseOver.journalInstanceID)
 		private.findPoiType(poiName)
 	end

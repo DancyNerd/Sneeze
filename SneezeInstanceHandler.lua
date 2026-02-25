@@ -21,7 +21,6 @@ Since both might be helpful, we can leave the tables as they are and just add th
 local function delveStory()
     if private.instanceName then
         local delveInfo
-        --local playerMapID = C_Map.GetBestMapForUnit("player")
         if C_AreaPoiInfo.GetAreaPOIInfo(private.constMapID, private.instanceID) then
             delveInfo = C_AreaPoiInfo.GetAreaPOIInfo(private.constMapID, private.instanceID)
             --print("Delve is not bountiful and " .. private.instanceName)
@@ -35,77 +34,77 @@ end
 private.instanceTypeMap = {
     ["Ahn'kahet: The Old Kingdom"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 0
+        private.instanceID = 6704
         private.instanceName = "Ahn'kahet: The Old Kingdom"
     end,
     ["Azjol-Nerub"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 6
+        private.instanceID = 6703
         private.instanceName = "Azjol-Nerub"
     end,
     ["Drak'Tharon Keep"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 6
+        private.instanceID = 6702
         private.instanceName = "Drak'Tharon Keep"
     end,
     ["Gundrak"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 5
+        private.instanceID = 7699
         private.instanceName = "Gundrak"
     end,
     ["Halls of Lightning"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 5
+        private.instanceID = 6699
         private.instanceName = "Halls of Lightning"
     end,
     ["Halls of Reflection"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 3
+        private.instanceID = 6698
         private.instanceName = "Halls of Reflection"
     end,
     ["Halls of Stone"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 9
+        private.instanceID = 6700
         private.instanceName = "Halls of Stone"
     end,
     ["Pit of Saron"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 1
+        private.instanceID = 6697
         private.instanceName = "Pit of Saron"
     end,
     ["The Forge of Souls"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 6
+        private.instanceID = 6696
         private.instanceName = "The Forge of Souls"
     end,
     ["The Nexus"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 5
+        private.instanceID = 6695
         private.instanceName = "The Nexus"
     end,
     ["The Oculus"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 6
+        private.instanceID = 6694
         private.instanceName = "The Oculus"
     end,
     ["The Violet Hold"] = function() --This may be tricky due to Legion/Wrath overlap
         private.instanceType = "Dungeon"
-        private.instanceID = 9
+        private.instanceID = 5098
         private.instanceName = "The Violet Hold"
     end,
     ["Trial of the Champion"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 3
+        private.instanceID = 6692
         private.instanceName = "Trial of the Champion"
     end,
     ["Utgarde Keep"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 6
+        private.instanceID = 6691
         private.instanceName = "Utgarde Keep"
     end,
     ["Utgarde Pinnacle"] = function() --Wrath of the Lich King
         private.instanceType = "Dungeon"
-        private.instanceID = 7
+        private.instanceID = 6690
         private.instanceName = "Utgarde Pinnacle"
     end,
     ["Uldaman: Legacy of Tyr"] = function() --Dragonflight
@@ -220,12 +219,12 @@ private.instanceTypeMap = {
     end,
     ["City of Threads"] = function() --The War Within
         private.instanceType = "Dungeon"
-        private.instanceID = 1
+        private.instanceID = 7862
         private.instanceName = "City of Threads"
     end,
     ["Ara-Kara, City of Echoes"] = function() --The War Within
         private.instanceType = "Dungeon"
-        private.instanceID = 2
+        private.instanceID = 7545
         private.instanceName = "Ara-Kara, City of Echoes"
     end,
     ["Cinderbrew Meadery"] = function() --The War Within
@@ -253,7 +252,47 @@ private.instanceTypeMap = {
         private.instanceID = 6532
         private.instanceName = "Black Temple"
     end,
-    ["The Nighthold"] = function() --Legion
+    ["Icecrown Citadel"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6521
+        private.instanceName = "Icecrown Citadel"
+    end,
+    ["Naxxramas"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6524
+        private.instanceName = "Naxxramas"
+    end,
+    ["The Eye of Eternity"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6525
+        private.instanceName = "The Eye of Eternity"
+    end,
+    ["The Obsidian Sanctum"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6520
+        private.instanceName = "The Obsidian Sanctum"
+    end,
+    ["The Ruby Sanctum"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6519
+        private.instanceName = "The Ruby Sanctum"
+    end,
+    ["Trial of the Crusader"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6522
+        private.instanceName = "Trial of the Crusader"
+    end,
+    ["Ulduar"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6523
+        private.instanceName = "Ulduar"
+    end,
+    ["Vault of the Archavon"] = function() --Wrath of the Lich King
+        private.instanceType = "Raid"
+        private.instanceID = 6526
+        private.instanceName = "Vault of the Archavon"
+    end,
+   ["The Nighthold"] = function() --Legion
         private.instanceType = "Raid"
         private.instanceID = 5101
         private.instanceName = "The Nighthold"
